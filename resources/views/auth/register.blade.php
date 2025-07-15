@@ -1,163 +1,52 @@
-@extends('layout.base')
+<x-guest-layout>
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
 
-@section('title', 'Register - Kaly')
-@section('description', 'Create a new account to get started and access all features.')
-
-@section('content')
-<link href="{{ asset('css/login.css') }}" rel="stylesheet"> {{-- Reuse the same CSS --}}
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="card shadow-lg border-0">
-                <div class="card-header bg-primary text-white text-center py-4">
-                    <h3 class="mb-0">
-                        <i class="fas fa-user-plus me-2"></i>
-                        Create Account
-                    </h3>
-                    <p class="mb-0 opacity-75">Sign up to get started</p>
-                </div>
-
-                <div class="card-body p-5">
-                    @if ($errors->any())
-                        @if ($errors->has('name') || $errors->has('email') || $errors->has('password'))
-                            {{-- لا حاجة لعرض رسالة عامة إذا تم عرضها تحت الحقول --}}
-                        @else
-                            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                <i class="fas fa-exclamation-circle me-2"></i>
-                                {{ $errors->first() }}
-                            </div>
-                        @endif
-                    @endif
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <!-- Name -->
-                        <div class="mb-4">
-                            <label for="name" class="form-label fw-semibold">
-                                <i class="fas fa-user me-2 text-muted"></i>Full Name
-                            </label>
-                            <input type="text" 
-                                   class="form-control form-control-lg @error('name') is-invalid @enderror" 
-                                   id="name" 
-                                   name="name" 
-                                   value="{{ old('name') }}"
-                                   placeholder="Enter your name"
-                                   required 
-                                   autofocus>
-                            @error('name')
-                                <div class="invalid-feedback">
-                                    <i class="fas fa-exclamation-circle me-1"></i>
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <!-- Email -->
-                        <div class="mb-4">
-                            <label for="email" class="form-label fw-semibold">
-                                <i class="fas fa-envelope me-2 text-muted"></i>Email Address
-                            </label>
-                            <input type="email" 
-                                   class="form-control form-control-lg @error('email') is-invalid @enderror" 
-                                   id="email" 
-                                   name="email" 
-                                   value="{{ old('email') }}"
-                                   placeholder="Enter your email"
-                                   required>
-                            @error('email')
-                                <div class="invalid-feedback">
-                                    <i class="fas fa-exclamation-circle me-1"></i>
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <!-- Password -->
-                        <div class="mb-4">
-                            <label for="password" class="form-label fw-semibold">
-                                <i class="fas fa-lock me-2 text-muted"></i>Password
-                            </label>
-                            <div class="input-group">
-                                <input type="password" 
-                                       class="form-control form-control-lg @error('password') is-invalid @enderror" 
-                                       id="password" 
-                                       name="password" 
-                                       placeholder="Enter a strong password"
-                                       required>
-                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            @error('password')
-                                <div class="invalid-feedback">
-                                    <i class="fas fa-exclamation-circle me-1"></i>
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <!-- Confirm Password -->
-                        <div class="mb-4">
-                            <label for="password_confirmation" class="form-label fw-semibold">
-                                <i class="fas fa-lock me-2 text-muted"></i>Confirm Password
-                            </label>
-                            <input type="password" 
-                                   class="form-control form-control-lg" 
-                                   id="password_confirmation" 
-                                   name="password_confirmation" 
-                                   placeholder="Re-enter your password"
-                                   required>
-                        </div>
-
-                        <!-- Register Button -->
-                        <div class="d-grid mb-4">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fas fa-user-plus me-2"></i>
-                                Register
-                            </button>
-                        </div>
-
-                        <!-- Login Link -->
-                        <div class="text-center">
-                            <p class="text-muted">
-                                Already have an account?
-                                @if (Route::has('login'))
-                                    <a href="{{ route('login') }}" class="text-decoration-none fw-semibold">
-                                        Sign In
-                                    </a>
-                                @endif
-                            </p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Info Text -->
-            <div class="text-center mt-4">
-                <p class="text-muted">
-                    <i class="fas fa-lock me-2"></i>
-                    Your information will never be shared
-                </p>
-            </div>
+        <!-- Name -->
+        <div>
+            <x-input-label for="name" :value="__('Name')" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
-    </div>
-</div>
 
-<script>
-    // Toggle password visibility
-    document.getElementById('togglePassword')?.addEventListener('click', function () {
-        const pwd = document.getElementById('password');
-        const icon = this.querySelector('i');
-        if (pwd.type === 'password') {
-            pwd.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            pwd.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        }
-    });
-</script>
+        <!-- Email Address -->
+        <div class="mt-4">
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
 
-@endsection
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
+
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mt-4">
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
+            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                            type="password"
+                            name="password_confirmation" required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                {{ __('Already registered?') }}
+            </a>
+
+            <x-primary-button class="ml-4">
+                {{ __('Register') }}
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>
