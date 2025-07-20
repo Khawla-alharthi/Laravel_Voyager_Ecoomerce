@@ -1,66 +1,253 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Voyager E-commerce
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, full-featured e-commerce application built with Laravel and Voyager admin panel. This project provides a complete online shopping solution with a powerful backend management system.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Frontend Features
+- **Product Catalog**: Browse products by categories with advanced filtering and search
+- **Shopping Cart**: Add, remove, and manage items with persistent cart storage
+- **User Authentication**: Register, login, and manage user profiles
+- **Order Management**: Place orders, track status, and view order history
+- **Payment Integration**: Secure payment processing (Stripe/PayPal)
+- **Responsive Design**: Mobile-first, responsive user interface
+- **Product Reviews**: Rate and review products
+- **Wishlist**: Save favorite products for later
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Admin Panel (Voyager)
+- **Dashboard**: Overview of sales, orders, and key metrics
+- **Product Management**: CRUD operations for products, categories, and attributes
+- **Order Management**: View, process, and update order statuses
+- **User Management**: Manage customers and their accounts
+- **Content Management**: Manage pages, posts, and media files
+- **Media Manager**: Upload and organize product images and assets
+- **Settings**: Configure site settings, payment methods, and shipping options
+- **Reports**: Sales reports and analytics
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠 Tech Stack
 
-## Learning Laravel
+- **Framework**: Laravel 10.x
+- **Admin Panel**: Voyager
+- **Database**: MySQL/PostgreSQL
+- **Frontend**: Blade Templates, Bootstrap/Tailwind CSS
+- **Authentication**: Laravel Breeze/Jetstream
+- **Payment**: Stripe API
+- **File Storage**: Laravel Storage (Local/S3)
+- **Mail**: Laravel Mail with SMTP
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📋 Requirements
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP >= 8.1
+- Composer
+- Node.js >= 16.x
+- NPM/Yarn
+- MySQL >= 5.7 or PostgreSQL >= 9.6
+- Git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🔧 Installation
 
-## Laravel Sponsors
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Khawla-alharthi/Laravel_Voyager_Ecoomerce.git
+cd Laravel_Voyager_Ecoomerce
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 2. Install Dependencies
+```bash
+# Install PHP dependencies
+composer install
 
-### Premium Partners
+# Install Node.js dependencies
+npm install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### 3. Environment Setup
+```bash
+# Copy environment file
+cp .env.example .env
 
-## Contributing
+# Generate application key
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Configure Database
+Edit your `.env` file with your database credentials:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-## Code of Conduct
+### 5. Configure Mail Settings
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=your_mail_host
+MAIL_PORT=587
+MAIL_USERNAME=your_email
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=noreply@yoursite.com
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Configure Payment (Stripe)
+```env
+STRIPE_KEY=your_stripe_public_key
+STRIPE_SECRET=your_stripe_secret_key
+```
 
-## Security Vulnerabilities
+### 7. Run Migrations and Seed Database
+```bash
+# Run migrations
+php artisan migrate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Install Voyager
+php artisan voyager:install
 
-## License
+# Create admin user
+php artisan voyager:admin your@email.com --create
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Seed sample data (optional)
+php artisan db:seed
+```
+
+### 8. Build Frontend Assets
+```bash
+# Development
+npm run dev
+
+# Production
+npm run build
+```
+
+### 9. Create Storage Link
+```bash
+php artisan storage:link
+```
+
+### 10. Start Development Server
+```bash
+php artisan serve
+```
+
+Visit `http://localhost:8000` to view the application.
+Admin panel is available at `http://localhost:8000/admin`.
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── Http/Controllers/
+│   ├── Models/
+│   ├── Mail/
+│   └── Services/
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   └── factories/
+├── resources/
+│   ├── views/
+│   ├── js/
+│   └── css/
+├── routes/
+│   ├── web.php
+│   └── api.php
+├── public/
+└── storage/
+```
+
+## 🎯 Usage
+
+### Admin Panel
+1. Login to admin panel at `/admin`
+2. Manage products, categories, and orders
+3. Configure site settings and payment methods
+4. Monitor sales and generate reports
+
+### Frontend
+1. Browse products and categories
+2. Add items to cart and checkout
+3. Register/login to track orders
+4. Leave reviews and manage wishlist
+
+## 🧪 Testing
+
+```bash
+# Run tests
+php artisan test
+
+# Run specific test suite
+php artisan test --testsuite=Feature
+```
+
+## 🚀 Deployment
+
+### Production Setup
+1. Set `APP_ENV=production` in `.env`
+2. Set `APP_DEBUG=false`
+3. Configure production database
+4. Set up SSL certificate
+5. Configure web server (Apache/Nginx)
+
+### Optimization Commands
+```bash
+# Cache configuration
+php artisan config:cache
+
+# Cache routes
+php artisan route:cache
+
+# Cache views
+php artisan view:cache
+
+# Optimize autoloader
+composer install --optimize-autoloader --no-dev
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 API Documentation
+
+API endpoints are available for mobile app integration:
+
+- `GET /api/products` - Get all products
+- `GET /api/categories` - Get all categories
+- `POST /api/orders` - Create new order
+- `GET /api/user/orders` - Get user orders
+
+## 🔒 Security
+
+- All user inputs are validated and sanitized
+- CSRF protection enabled
+- Password hashing with bcrypt
+- Secure payment processing
+- Regular security updates
+
+## 📄 License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+## 👥 Support
+
+For support and questions:
+- Create an issue on GitHub
+- Email: [alharthikhawla@gmail.com]
+
+## 🙏 Acknowledgments
+
+- [Laravel](https://laravel.com/) - The PHP framework
+- [Voyager](https://voyager.devdojo.com/) - Laravel admin package
+- [Stripe](https://stripe.com/) - Payment processing
+- All contributors and supporters
+
+---
+
+**Built with ❤️ using Laravel and Voyager**
