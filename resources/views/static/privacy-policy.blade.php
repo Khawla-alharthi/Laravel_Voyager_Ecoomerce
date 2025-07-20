@@ -1,4 +1,4 @@
-@extends('layout.base')
+@extends('layouts.app')
 
 @section('title', 'Privacy Policy - Kaly')
 @section('description', 'Read how Kaly handles your data and protects your privacy.')

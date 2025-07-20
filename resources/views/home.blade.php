@@ -1,24 +1,48 @@
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('title', 'Home - Kaly')
+@section('description', 'Discover our latest collection for modern fashion.')
 
-    <title>@yield('title', 'Dashboard - Kaly')</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
-    <!-- CSS Dependencies -->
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">   
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    
+@section('content')
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-circle circle-1"></div>
+        <div class="floating-circle circle-2"></div>
+    </div>
 
+    <!-- Main Hero Section -->
+    <main class="main-content">
+        <div class="content-left">
+            <div class="collection-label">URBAN EDGE</div>
+            <h1 class="main-heading">Jackets for the Modern Man</h1>
+            <a class="cta-button" href="{{ route('products.index') }}">Discover Now</a>
+        </div>
+        <div class="content-right">
+            <div class="models-container">
+                <div class="model model-1">
+                    <div class="model-image">
+                        <img src="{{ asset('images/blue.jpg') }}" alt="Modern Blue Jacket">
+                    </div>
+                </div>
+                <div class="model model-2">
+                    <div class="model-image">
+                        <img src="{{ asset('images/blue1.jpg') }}" alt="Modern Blue Jacket">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Slider Dots -->
+    <div class="navigation-dots">
+        <div class="dot active" onclick="changeSlide(0)"></div>
+        <div class="dot" onclick="changeSlide(1)"></div>
+        <div class="dot" onclick="changeSlide(2)"></div>
+    </div>
+@endsection
+
+@push('styles')
+    {{-- Add CSS inline or move to public/css/home.css --}}
     <style>
         * {
             margin: 0;
@@ -77,6 +101,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
         }
 
         .cta-button:hover {
@@ -93,16 +118,19 @@
         }
 
         .models-container {
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
             width: 100%;
-            max-width: 600px;
-            height: 500px;
+            max-width: 700px;
+            height: auto;
+            position: relative;
         }
 
         .model {
-            position: absolute;
-            width: 250px;
-            height: 400px;
+            width: 300px;
+            height: 460px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             backdrop-filter: blur(10px);
@@ -110,6 +138,13 @@
             transition: transform 0.3s ease;
             overflow: hidden;
             cursor: pointer;
+            position: static;
+        }
+
+        .model-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .model:hover {
@@ -323,53 +358,11 @@
             opacity: 1;
         }
     </style>
+@endpush
 
-    
-</head>
-
-<body class="d-flex flex-column min-vh-100">
-    <!-- Navigation -->
-    @include('layout.nav')
-    
-
-    <div class="floating-elements">
-        <div class="floating-circle circle-1"></div>
-        <div class="floating-circle circle-2"></div>
-    </div>
-
-    <main class="main-content">
-        <div class="content-left">
-            <div class="collection-label">URBAN EDGE</div>
-            <h1 class="main-heading">Jackets for the Modern Man</h1>
-            <button class="cta-button" onclick="exploreCollection()">Discover Now</button>
-        </div>
-        <div class="content-right">
-            <div class="models-container">
-                <div class="model model-1">
-                    <div class="model-image">
-                        Modern<br>Blue Jacket
-                    </div>
-                </div>
-                <div class="model model-2">
-                    <div class="model-image">
-                        Classic<br>White Tee
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <div class="navigation-dots">
-        <div class="dot active" onclick="changeSlide(0)"></div>
-        <div class="dot" onclick="changeSlide(1)"></div>
-        <div class="dot" onclick="changeSlide(2)"></div>
-    </div>
-    
-    <!-- Footer -->
-    @include('layout.footer')
-
+@push('scripts')
     <script>
-        // Global variables
+// Global variables
         let currentSlide = 0;
         const slides = ['Urban Edge', 'Classic Collection', 'Premium Line'];
         const headings = [
@@ -591,8 +584,7 @@
         window.exploreCollection = exploreCollection;
         window.changeSlide = changeSlide;
     </script>
-    <!-- JavaScript Dependencies -->
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endpush
+
+
+   

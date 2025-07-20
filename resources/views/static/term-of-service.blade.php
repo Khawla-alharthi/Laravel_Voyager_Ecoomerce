@@ -1,4 +1,4 @@
-@extends('layout.base')
+@extends('layouts.app')
 
 @section('title', 'Terms of Service - Kaly')
 @section('description', 'Understand the terms and conditions for using Kaly.')

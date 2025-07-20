@@ -20,9 +20,9 @@
             <div class="col-lg-2 col-md-6">
                 <h6 class="text-uppercase fw-bold mb-3">Quick Links</h6>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><a href="{{ route('base') }}" class="footer-link">Home</a></li>
-                    <li class="mb-2"><a href="#" class="footer-link">About Us</a></li>
-                    <li class="mb-2"><a href="#" class="footer-link">Services</a></li>
+                    <li class="mb-2"><a href="{{ route('home') }}" class="footer-link">Home</a></li>
+                    <li class="mb-2"><a href="{{ route('products.index') }}" class="footer-link">Products</a></li>
+                    <li class="mb-2"><a href="{{ route('categories.index') }}" class="footer-link">Categories</a></li>
                     <li class="mb-2"><a href="#" class="footer-link">Contact</a></li>
                 </ul>
             </div>
@@ -45,7 +45,7 @@
                 <ul class="list-unstyled text-muted">
                     <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>123 Business Street, City</li>
                     <li class="mb-2"><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</li>
-                    <li class="mb-2"><i class="fas fa-envelope me-2"></i>info@yourbrand.com</li>
+                    <li class="mb-2"><i class="fas fa-envelope me-2"></i>info@kaly.com</li>
                     <li><i class="fas fa-clock me-2"></i>Mon - Fri: 9:00 AM - 6:00 PM</li>
                 </ul>
             </div>
@@ -61,9 +61,9 @@
                     <p class="mb-0 text-light opacity-75">Stay up to date with the latest news and offers from Kaly.</p>
                 </div>
                 <div class="col-lg-6">
-                    <form method="POST" action="#" class="d-flex flex-wrap gap-2">
+                    <form method="POST" action="{{ route('newsletter.subscribe') }}" class="d-flex flex-wrap gap-2">
                         @csrf
-                        <input type="email" class="form-control w-100 w-md-auto" placeholder="Your email" required>
+                        <input type="email" name="email" class="form-control w-100 w-md-auto" placeholder="Your email" required>
                         <button type="submit" class="btn btn-outline-light">Subscribe</button>
                     </form>
                 </div>
